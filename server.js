@@ -17,13 +17,13 @@ const startServer = () => {
     authRequired: false,
     auth0Logout: true,
     secret: process.env.SECRET,
-    baseURL: "https://lego-sw-collection.onrender.com",
+    baseURL: "https://textbookexchange-finalproject.onrender.com",
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER_BASE_URL,
   };
 
-  
-  // app.use(auth(config));
+
+  app.use(auth(config));
 
   app
     .use(cors())
@@ -48,10 +48,9 @@ const startServer = () => {
     res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
   });
 
-//   need to add route first  
-//   app.get("/profile", requiresAuth(), (req, res) => {
-//     res.send(JSON.stringify(req.oidc.user));
-//   });
+  app.get("/profile", requiresAuth(), (req, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+  });
 
   app.use((err, req, res, next) => {
     if (err.name === "UnauthorizedError") {
