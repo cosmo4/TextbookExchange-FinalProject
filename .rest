@@ -1,0 +1,49 @@
+# Create a new user
+POST http://localhost:6000/api/user
+Content-Type: application/json
+
+{
+  "display_name": "testuser1",
+  "first_name": "henry",
+  "last_name": "Bondah",
+  "email": "bondah@example.com"
+}
+
+###
+
+# Get all users
+GET http://localhost:6000/api/user
+
+###
+
+# Login user
+GET http://localhost:6000/api/user/login
+
+###
+
+# Logout user
+GET http://localhost:6000/api/user/logout
+
+###
+
+# Get a user by ID
+GET http://localhost:6000/api/user/667d0289a42508b9740742e3
+
+###
+
+# Update a user by ID
+PUT http://localhost:6000/api/user/6680bf40cf30594cbf932124
+Content-Type: application/json
+
+{
+  "display_name": "Henry Testing",
+  "first_name": "Henry Dean",
+  "last_name": "Bondah",
+  "email": "Dean@gmail.com"
+}
+
+###
+
+# Delete a user by ID
+DELETE http://localhost:6000/api/user/667d0289a42508b9740742e3
+ 

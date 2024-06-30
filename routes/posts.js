@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const postController = require("../controllers/post");
+const postController = require("../controllers/posts.js");
 
 /**
  * @swagger
@@ -76,7 +76,7 @@ router.put("/", postController.createPost);
 /**
  * @swagger
  * /posts:
- *   patch:
+ *   put:
  *     summary: Update an existing post
  *     requestBody:
  *       required: true
@@ -97,7 +97,7 @@ router.put("/", postController.createPost);
  *       200:
  *         description: Updated
  */
-router.patch("/", postController.updatePost);
+router.put("/", postController.updatePost);
 
 /**
  * @swagger
