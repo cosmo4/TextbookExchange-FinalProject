@@ -1,11 +1,14 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongodb = require("./db/connect");
 const path = require("path");
-//const swaggerUi = require("swagger-ui-express");
-//const swaggerDocument = require("./swagger.json");
 const { requiresAuth } = require("express-openid-connect");
+
+const postRoutes = require("./routes/post");
+const swaggerRoutes = require("./swagger");
+const swaggerFile = require("./swagger-output.json");
 
 const app = express();
 const port = 9090;
@@ -22,7 +25,6 @@ const startServer = () => {
     issuerBaseURL: process.env.ISSUER_BASE_URL,
   };
 
-
   app.use(auth(config));
 
   app
@@ -32,13 +34,17 @@ const startServer = () => {
     .use(express.urlencoded({ extended: true }))
     .use(express.static(path.join(__dirname, "public")))
 
-    // need swagger setup with routes
-    // .use(
-    //   "/api-docs",
-    //   requiresAuth(),
-    //   swaggerUi.serve,
-    //   swaggerUi.setup(swaggerDocument)
-    // );
+    //ROUTES
+    .use("/posts", postRoutes);
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+  // need swagger setup with routes
+  // .use(
+  //   "/api-docs",
+  //   requiresAuth(),
+  //   swaggerUi.serve,
+  //   swaggerUi.setup(swaggerDocument)
+  // );
 
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -73,11 +79,11 @@ const startServer = () => {
 };
 
 mongodb.initDb((err) => {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    } else {
-      console.log('Connected to the database');
-      startServer();
-    }
-  });
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  } else {
+    console.log("Connected to the database");
+    startServer();
+  }
+});
