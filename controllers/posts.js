@@ -1,9 +1,15 @@
 const express = require("express");
 const mongodb = require("../db/connect");
+const ObjectId = require("mongodb").ObjectId;
+const getPostsConnection = mongodb.getDb().db().collection('posts');
 
-const getAllPosts = async (req, res) => {
-  console.log("get all posts");
-};
+const getAllPosts = async function(req, res) {
+  const result = await getPostsConnection.find();
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
+}
 
 const getPostByTitle = async (req, res) => {
   console.log("get post by title");

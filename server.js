@@ -6,14 +6,14 @@ const mongodb = require("./db/connect");
 const path = require("path");
 const { requiresAuth } = require("express-openid-connect");
 
-const postRoutes = require("./routes/post");
-const swaggerRoutes = require("./swagger");
-const swaggerFile = require("./swagger-output.json");
+
 
 const app = express();
 const port = 9090;
 
 const startServer = () => {
+  const postRoutes = require("./routes/posts");
+  const swaggerFile = require("./swagger-prod.json");
   const { auth } = require("express-openid-connect");
 
   const config = {
