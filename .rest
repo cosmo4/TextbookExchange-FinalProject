@@ -47,3 +47,45 @@ Content-Type: application/json
 # Delete a user by ID
 DELETE http://localhost:6000/api/user/667d0289a42508b9740742e3
  
+
+### 
+#POST ROUTE TESTS
+
+# GET all posts
+GET http://localhost:9090/posts/
+
+###
+
+#GET post by title
+GET http://localhost:9090/posts/This is a new post
+
+###
+#GET post by ID
+GET http://localhost:9090/posts/667d02d3a42508b9740742e4
+
+###
+#POST create post 
+POST http://localhost:9090/posts
+Content-Type: application/json
+
+{
+  "post_content" : "This is a new post",
+  "book_condition" : "Used",
+  "user_id": "667d0289a42508b9740742e3",
+    "book_id": "667d016ca42508b9740742e2",
+    "status": "available"
+
+}
+
+###
+#PUT update post
+PUT http://localhost:9090/posts/668d665e8073d3b669827645
+Content-Type: application/json
+
+{
+  "post_content": "Here's a new book i got. Anyone want it?"
+}
+
+###
+#DELETE post
+DELETE http://localhost:9090/posts/668d64d78b4428fef029fc8c

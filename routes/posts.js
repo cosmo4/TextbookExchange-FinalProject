@@ -35,24 +35,24 @@ router.get("/:title", postController.getPostByTitle);
  * @swagger
  * /posts/{id}:
  *   get:
- *     summary: Retrieve a post by ISBN
+ *     summary: Retrieve a post by id
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: The post ISBN
+ *         description: The post id
  *     responses:
  *       200:
  *         description: A single post
  */
-router.get("/:id", postController.getPostByISBN);
+router.get("/:id", postController.getPostById);
 
 /**
  * @swagger
  * /posts:
- *   put:
+ *   post:
  *     summary: Create a new post
  *     requestBody:
  *       required: true
@@ -71,7 +71,7 @@ router.get("/:id", postController.getPostByISBN);
  *       201:
  *         description: Created
  */
-router.put("/", postController.createPost);
+router.post("/", postController.createPost);
 
 /**
  * @swagger
@@ -97,7 +97,7 @@ router.put("/", postController.createPost);
  *       200:
  *         description: Updated
  */
-router.put("/", postController.updatePost);
+router.put("/:id", postController.updatePost);
 
 /**
  * @swagger
@@ -117,6 +117,6 @@ router.put("/", postController.updatePost);
  *       200:
  *         description: Deleted
  */
-router.delete("/", postController.deletePost);
+router.delete("/:id", postController.deletePost);
 
 module.exports = router;

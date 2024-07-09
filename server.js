@@ -4,9 +4,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongodb = require("./db/connect");
 const path = require("path");
+const connectDb = require("./db/connect");
 const { requiresAuth } = require("express-openid-connect");
-
-
 
 const app = express();
 const port = 9090;
@@ -78,12 +77,13 @@ const startServer = () => {
   });
 };
 
-mongodb.initDb((err) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  } else {
-    console.log("Connected to the database");
-    startServer();
-  }
-});
+connectDb().then(startServer);
+// mongodb.initDb((err) => {
+//   if (err) {
+//     console.error(err);
+//     process.exit(1);
+//   } else {
+//     console.log("Connected to the database");
+//     startServer();
+//   }
+// });
