@@ -1,38 +1,42 @@
+// cred: made using code from:
+// - https://youtu.be/K00J87SofEc?si=E9FVdQXJRatU5l_A
+// - https://www.youtube.com/watch?v=K00J87SofEc
+
 const express = require('express');
 const router = express.Router();
 const booksController = require("../controllers/books.js");
 
-// POST /book
+// POST /books
 // Posts a new book
-router.post('/', booksController.placeholderRoute)
+router.post('/', booksController.postBookRoute)
 
-// GET /book (get all)
+// GET /books (get all)
 // Gets all the books
-router.get('/', booksController.placeholderRoute)
+router.get('/', booksController.getAllRoute)
 
-// GET /book/{isbn}
+// GET /books/isbn/{isbn}
 // Gets a book according to the given isbn
-router.get('/:isbn', booksController.placeholderRoute)
+router.get('/isbn/:isbn', booksController.getByIsbnRoute)
 
-// GET /book/{id}
+// GET /books/id/{id}
 // Gets a book according to the given id
-router.get('/:id', booksController.placeholderRoute)
+router.get('/id/:id', booksController.getByIdRoute)
 
-// GET /book/{title}
-// Gets book(s) according to the given id
-router.get('/:title', booksController.placeholderRoute)
+// GET /books/title/{title}
+// Gets book(s) according to the given title
+router.get('/title/:title', booksController.getByTitleRoute)
 
-// GET /book/{author}
+// GET /books/author/{author}
 // Gets book(s) according to the given author
-router.get('/:author', booksController.placeholderRoute)
+router.get('/author/:author', booksController.getByAuthorRoute)
 
-// PUT /book/{id}
+// PUT /books/{id}
 // Puts to a book according to the given id
-router.put('/:id', booksController.placeholderRoute)
+router.put('/:id', booksController.putRoute)
 
-// DELETE /book/{id}
+// DELETE /books/{id}
 // Deletes a book according to the given id
-router.delete('/:id', booksController.placeholderRoute)
+router.delete('/:id', booksController.deleteRoute)
 
 
 module.exports = router
