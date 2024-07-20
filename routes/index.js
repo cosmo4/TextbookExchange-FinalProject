@@ -1,7 +1,10 @@
+// made using code from:
+// - https://expressjs.com/en/guide/routing.html
+
 const express = require('express');
 const router = express.Router();
 const postsRoute = require('./posts');
-const booksRoute = require('./books');
+const booksRoute = require('./books.js');
 const reviewsRoute = require('./reviews');
 const usersRoute = require('./users');
 
@@ -13,13 +16,11 @@ const swaggerDocument = require('../swagger-output.json');
 // router.use('/api-docs', swaggerUi.serve);
 // router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
-router.get('/posts', postsRoute);
+router.use('/posts', postsRoute);
 
-router.get('/books', booksRoute);
+router.use('/books', booksRoute);
 
-router.get('/reviews', reviewsRoute);
-
-
+router.use('/reviews', reviewsRoute);
 
 
 module.exports = router;

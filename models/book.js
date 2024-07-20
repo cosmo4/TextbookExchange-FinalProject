@@ -9,7 +9,7 @@ const BookSchema = new mongoose.Schema({
   isbn: { type: String, required: true, unique: true },
   book_title: { type: String, required: true },
   authors: { type: [String], required: true },
-  laguage: { type: String, required: true },
+  language: { type: String, required: true },
   created_at: { type: Date, default: Date.now},
 });
 
