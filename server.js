@@ -11,7 +11,7 @@ const app = express();
 const port = 9090;
 
 const startServer = () => {
-  const postRoutes = require("./routes/posts");
+  const routes = require("./routes/index.js");
   const swaggerFile = require("./swagger-prod.json");
   const { auth } = require("express-openid-connect");
 
@@ -34,7 +34,7 @@ const startServer = () => {
     .use(express.static(path.join(__dirname, "public")))
 
     //ROUTES
-    .use("/posts", postRoutes);
+    .use("/", routes);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
   // need swagger setup with routes

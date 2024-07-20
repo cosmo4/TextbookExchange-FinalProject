@@ -8,7 +8,7 @@ const usersRoute = require('./users');
 const swaggerAutogen = require('swagger-autogen')();
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerDocument = require('./swagger-output.json');
+const swaggerDocument = require('../swagger-output.json');
 
 // router.use('/api-docs', swaggerUi.serve);
 // router.get('/api-docs', swaggerUi.setup(swaggerDocument));
