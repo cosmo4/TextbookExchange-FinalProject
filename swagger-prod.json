@@ -298,6 +298,23 @@
       },
       "post": {
         "summary": "Create a new book",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Post object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book_title": { "type": "string" },
+                "authors": { "type": ["string"] },
+                "language": { "type": "string" },
+                "isbn": { "type": "string" }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
