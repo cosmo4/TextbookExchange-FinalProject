@@ -10,6 +10,11 @@ This project is an API for a textbook exchange progam.
 - use **`kebab-case`** for routes
   - _e.g._ `by-title`
 
+## Misc. Credit
+
+The line:
+`"test": "node --experimental-vm-modules node_modules/.bin/jest --coverage"` in package.json is copied from https://fek.io/blog/how-to-add-unit-testing-to-express-using-jest/
+
 ## Functions
 
 ### /controllers
