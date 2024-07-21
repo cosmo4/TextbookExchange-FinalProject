@@ -14,6 +14,7 @@ const startServer = () => {
   const routes = require("./routes/index.js");
   const swaggerFile = require("./swagger-prod.json");
   const { auth } = require("express-openid-connect");
+  const userController = require('./controllers/users.js');
 
   const config = {
     authRequired: false,
@@ -47,15 +48,7 @@ const startServer = () => {
 
     //ROUTES
     .use("/", routes);
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
-  // need swagger setup with routes
-  // .use(
-  //   "/api-docs",
-  //   requiresAuth(),
-  //   swaggerUi.serve,
-  //   swaggerUi.setup(swaggerDocument)
-  // );
+  app.use("/api-docs", requiresAuth(), swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
