@@ -2,6 +2,25 @@
 
 const User = require('../models/user');
 
+// Check if user exists, if not, create a new user
+exports.checkAndCreateUser = async (auth0User) => {
+  try {
+    const { nickname: display_name, given_name: first_name, family_name: last_name, email } = auth0User;
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      const newUser = new User({ display_name, first_name, last_name, email });
+      await newUser.save();
+      console.log('New user created:', newUser);
+    } else {
+      console.log('User already exists:', user);
+    }
+  } catch (error) {
+    console.error('Error in checkAndCreateUser:', error);
+    throw error;
+  }
+};
+
 // Create a new user
 exports.createUser = async (req, res) => {
   try {

@@ -8,8 +8,12 @@ const booksRoute = require('./books.js');
 const reviewsRoute = require('./reviews');
 const usersRoute = require('./users');
 const { requiresAuth } = require("express-openid-connect");
+const userController = require('../controllers/userController');
 
+// Public route to create a new user (no auth required)
+router.post('/users', userController.checkAndCreateUser);
 
+// Protected routes
 router.use('/posts', requiresAuth(), postsRoute);
 
 router.use('/books', requiresAuth(), booksRoute);

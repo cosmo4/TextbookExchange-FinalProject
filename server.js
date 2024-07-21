@@ -26,6 +26,18 @@ const startServer = () => {
 
   app.use(auth(config));
 
+  // Middleware to check and create a new user if not exists
+  app.use(async (req, res, next) => {
+    if (req.oidc && req.oidc.user) {
+      try {
+        await userController.checkAndCreateUser(req.oidc.user);
+      } catch (error) {
+        console.error('Error checking/creating user:', error);
+      }
+    }
+    next();
+  });
+
   app
     .use(cors())
     .use(bodyParser.json())
