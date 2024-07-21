@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "API Documentation",
-    "description": "API documentation for various services",
+    "description": "API documentation for various services including our Textbook exchange project",
     "version": "1.0.0"
   },
   "host": "textbookexchange-finalproject.onrender.com",
@@ -21,7 +21,7 @@
           }
         }
       },
-      "put": {
+      "post": {
         "summary": "Create a new post",
         "parameters": [
           {
@@ -42,6 +42,31 @@
         "responses": {
           "201": {
             "description": "Created"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing post",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Post object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "isbn": { "type": "string" },
+                "content": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated"
           }
         }
       },
@@ -89,14 +114,14 @@
     },
     "/posts/{id}": {
       "get": {
-        "summary": "Retrieve a post by ISBN",
+        "summary": "Retrieve a post by id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "The post ISBN"
+            "description": "The post id"
           }
         ],
         "responses": {
@@ -280,7 +305,7 @@
         }
       }
     },
-    "/books/{isbn}": {
+    "/books/isbn/{isbn}": {
       "get": {
         "summary": "Get a book by ISBN",
         "parameters": [
@@ -298,7 +323,7 @@
         }
       }
     },
-    "/books/{id}": {
+    "/books/id/{id}": {
       "get": {
         "summary": "Get a book by ID",
         "parameters": [
@@ -348,7 +373,7 @@
         }
       }
     },
-    "/books/{title}": {
+    "/books/title/{title}": {
       "get": {
         "summary": "Get books by title",
         "parameters": [
@@ -366,7 +391,7 @@
         }
       }
     },
-    "/books/{author}": {
+    "/books/author/{author}": {
       "get": {
         "summary": "Get books by author",
         "parameters": [
